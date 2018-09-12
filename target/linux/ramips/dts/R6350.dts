@@ -79,7 +79,7 @@
 	status = "okay";
 
 	partitions {
-		compatible = "fixed-partitions";
+		compatible = "sercomm,sc-partitions", "fixed-partitions";
 		#address-cells = <1>;
 		#size-cells = <1>;
 
@@ -87,22 +87,26 @@
 			label = "u-boot";
 			reg = <0x0 0x100000>;
 			read-only;
+			scpart-id = <0>;
 		};
 
 		partition@100000 {
 			label = "SC PART_MAP";
 			reg = <0x100000 0x100000>;
 			read-only;
+			scpart-id = <1>;
 		};
 
 		partition@200000 {
 			label = "kernel";
 			reg = <0x200000 0x400000>;
+			scpart-id = <2>;
 		};
 
 		partition@600000 {
 			label = "ubi";
 			reg = <0x600000 0x2800000>;
+			scpart-id = <3>;
 		};
 
 		/* +0x02E00000 - +0x04600000 : reserved */
@@ -111,6 +115,7 @@
 			label = "factory";
 			reg = <0x4600000 0x200000>;
 			read-only;
+			scpart-id = <16>;
 		};
 
 		/* +0x04800000 - +0x08000000 : reserved */
